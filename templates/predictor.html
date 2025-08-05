@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Predict Crop</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0fff4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
+
+        .menu-icon {
+            font-size: 24px;
+            cursor: pointer;
+            color: #2d6a4f;
+            margin-left: 10px;
+        }
+
+        .sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #40916c;
+            overflow-x: hidden;
+            transition: 0.3s;
+            padding-top: 60px;
+            z-index: 2;
+        }
+
+        .sidebar a {
+            padding: 12px 20px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+            transition: 0.2s;
+        }
+
+        .sidebar a:hover {
+            background-color: #1b4332;
+        }
+
+        .overlay {
+            position: fixed;
+            display: none;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.3);
+            z-index: 1;
+        }
+
+        .main {
+            padding: 100px 20px 40px;
+            max-width: 500px;
+            margin: auto;
+        }
+
+        h1 {
+            color: #1b4332;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        form {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        input, button {
+            display: block;
+            width: 100%;
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #2d6a4f;
+            color: white;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #40916c;
+        }
+
+        .result-box {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #d8f3dc;
+            border-left: 5px solid #2d6a4f;
+            border-radius: 8px;
+            color: #1b4332;
+            font-size: 18px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .result-box strong {
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Topbar with Hamburger Icon -->
+    <div class="topbar">
+        <span class="menu-icon" onclick="openSidebar()">☰</span>
+    </div>
+
+    <!-- Sidebar -->
+    <div id="sidebar" class="sidebar">
+        <a href="/">Home</a>
+        <a href="/predictor">Predict Crop</a>
+        <a href="/history">History</a>
+        <a href="/crop_info">Crop Info</a>
+        <a href="/about">About</a>
+    </div>
+
+    <!-- Overlay -->
+    <div id="overlay" class="overlay" onclick="closeSidebar()"></div>
+
+    <!-- Main Content -->
+    <div class="main">
+        <h1>🌾 Predict the Best Crop</h1>
+        <form action="/predictor" method="post">
+            <input type="number" name="N" placeholder="Nitrogen" required>
+            <input type="number" name="P" placeholder="Phosphorous" required>
+            <input type="number" name="K" placeholder="Potassium" required>
+            <input type="number" step="0.1" name="temperature" placeholder="Temperature (°C)" required>
+            <input type="number" step="0.1" name="humidity" placeholder="Humidity (%)" required>
+            <input type="number" step="0.1" name="ph" placeholder="pH" required>
+            <input type="number" step="0.1" name="rainfall" placeholder="Rainfall (mm)" required>
+            <button type="submit">Predict Crop</button>
+        </form>
+
+        {% if prediction %}
+            <div class="result-box">
+            🌱 <strong>Recommended Crop:</strong> <span class="crop-name">{{ prediction }}</span>
+            </div>
+        {% endif %}
+    </div>
+
+    <script>
+        function openSidebar() {
+            document.getElementById("sidebar").style.width = "250px";
+            document.getElementById("overlay").style.display = "block";
+        }
+
+        function closeSidebar() {
+            document.getElementById("sidebar").style.width = "0";
+            document.getElementById("overlay").style.display = "none";
+        }
+    </script>
+
+</body>
+</html>

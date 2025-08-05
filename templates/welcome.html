@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome | Crop Recommendation</title>
+    <style>
+        body {
+            background-color: #d8f3dc;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
+
+        .menu-icon {
+            font-size: 24px;
+            cursor: pointer;
+            color: #2d6a4f;
+            margin-left: 10px;
+        }
+
+        .sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #40916c;
+            overflow-x: hidden;
+            transition: 0.3s;
+            padding-top: 60px;
+            z-index: 2;
+        }
+
+        .sidebar a {
+            padding: 12px 20px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+            transition: 0.2s;
+        }
+
+        .sidebar a:hover {
+            background-color: #1b4332;
+        }
+
+        .main {
+            padding: 100px 20px;
+            text-align: center;
+            max-width: 700px;
+            margin: auto;
+        }
+
+        h1 {
+            color: #1b4332;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 18px;
+            color: #2d6a4f;
+        }
+
+        a.button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 14px 28px;
+            font-size: 18px;
+            background-color: #2d6a4f;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        a.button:hover {
+            background-color: #40916c;
+        }
+
+        .overlay {
+            position: fixed;
+            display: none;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.3);
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Transparent topbar -->
+    <div class="topbar">
+        <span class="menu-icon" onclick="openSidebar()">☰</span>
+    </div>
+
+    <!-- Sidebar -->
+    <div id="sidebar" class="sidebar">
+        <a href="/">Home</a>
+        <a href="/predictor">Predict Crop</a>
+        <a href="/history">History</a>
+        <a href="/crop_info">Crop Info</a>
+        <a href="/about">About</a>
+    </div>
+
+    <!-- Overlay -->
+    <div id="overlay" class="overlay" onclick="closeSidebar()"></div>
+
+    <!-- Main Content -->
+    <div class="main">
+        <h1>🌾 Welcome to Crop Recommendation System</h1>
+        <p>Click the button below to predict the best crop for your farm based on soil and weather conditions.</p>
+        <a class="button" href="/predictor">Start Prediction</a>
+    </div>
+
+    <script>
+        function openSidebar() {
+            document.getElementById("sidebar").style.width = "250px";
+            document.getElementById("overlay").style.display = "block";
+        }
+
+        function closeSidebar() {
+            document.getElementById("sidebar").style.width = "0";
+            document.getElementById("overlay").style.display = "none";
+        }
+    </script>
+
+</body>
+</html>
