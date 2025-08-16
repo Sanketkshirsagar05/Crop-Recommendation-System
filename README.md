@@ -21,7 +21,7 @@ A web‑based machine learning application that predicts the most suitable crop 
 4. `python app.py`
 5. Open browser at `http://127.0.0.1:5000/`
 
-## 🌍 Railway Deployment
+## Railway Deployment
 
 You can deploy this project on **[Railway](https://railway.app/)** for free hosting:
 
@@ -44,7 +44,7 @@ You can deploy this project on **[Railway](https://railway.app/)** for free host
      ```
 
 5. Railway will auto-assign a domain.  
-6. Visit the generated link to access your deployed app 🚀  
+6. Visit the generated link to access your deployed app 
 
 ## Usage
 Enter values for soil and climate parameters and receive a recommended crop based on the trained model.
